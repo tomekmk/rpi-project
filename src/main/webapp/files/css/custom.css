@@ -1,0 +1,80 @@
+/* your styles go here */
+
+.page-content {
+    background-color: #342c2c
+}
+
+.page-header {
+    background-color: #463f3f;
+    padding: 10px 15px
+}
+
+nav#sidebar {
+    background-color: #463f3f;
+    width: 260px;
+}
+
+nav#sidebar li.active > a {
+    background-color: #342c2c
+}
+
+nav.navbar {
+    background-color: #463f3f;
+    padding-top: 10px;
+    padding-bottom: 10px
+}
+
+nav#sidebar li a:hover {
+    background-color: #000000
+}
+
+nav.navbar .sidebar-toggle {
+    background: #000000;
+}
+
+nav#sidebar a[aria-expanded="true"] {
+    background-color: #342c2c
+}
+
+nav#sidebar li li a {
+    background-color: #342c2c
+}
+
+nav#sidebar li li a:hover {
+    background: #000000;
+}
+
+
+.block {
+    background-color: #463f3f
+}
+
+.statistic-block {
+    background-color: #463f3f
+}
+
+.col-lg-6 {
+    flex: 0 0 100%;
+    max-width: 100%;
+}
+
+body {
+    line-height: 1.1;
+}
+
+.statistic-block strong {
+    font-size: 0.8rem;
+}
+
+.footer .footer__block {
+    min-height: 50px;
+    padding: 10px;
+}
+
+.messages-block .title {
+    margin-bottom: 10px;
+}
+
+.messages-block a.message:hover {
+    background: #000000;
+}
