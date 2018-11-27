@@ -33,4 +33,14 @@ public class WebConfig extends WebMvcConfigurerAdapter {
         resolver.setSuffix(".jsp");
         return resolver;
     }
+//
+//    @Override
+//    public void addFormatters(FormatterRegistry registry) {
+//        registry.addConverter(pinConverter());
+//    }
+//
+//    @Bean
+//    public Converter pinConverter() {
+//        return new PinConverter();
+//    }
 }

@@ -11,7 +11,7 @@
 
 nav#sidebar {
     background-color: #463f3f;
-    width: 260px;
+    /*width: 260px;*/
 }
 
 nav#sidebar li.active > a {

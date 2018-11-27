@@ -7,7 +7,8 @@ import javax.persistence.*;
 public class DimmingDevice extends DeviceDetails implements DeviceInterface {
     //todo rpi + sending status
 
-    private Integer pin_number;
+    @OneToOne
+    private UsedPins pin;
     private boolean value = false;
     private Integer dimmingValue = 0;
 
@@ -38,12 +39,12 @@ public class DimmingDevice extends DeviceDetails implements DeviceInterface {
     public DimmingDevice() {
     }
 
-    public Integer getPin_number() {
-        return pin_number;
+    public UsedPins getPin() {
+        return pin;
     }
 
-    public void setPin_number(Integer pin_number) {
-        this.pin_number = pin_number;
+    public void setPin(UsedPins pin) {
+        this.pin = pin;
     }
 
     public Integer getDimmingValue() {

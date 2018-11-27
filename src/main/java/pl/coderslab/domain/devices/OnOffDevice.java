@@ -5,11 +5,13 @@ import javax.persistence.*;
 @Entity
 @Table(name = "on_off_devices")
 public class OnOffDevice extends DeviceDetails implements DeviceInterface {
+
     //todo rpi + sending status
     //todo other init params
-    private Integer pin_number;
 
-    //todo move value to DTO
+    private Integer pin;
+
+    //todo move this value to DTO
     private boolean value;
 
 
@@ -27,10 +29,7 @@ public class OnOffDevice extends DeviceDetails implements DeviceInterface {
 
     @Override
     public void toggle() {
-        if (this.value)
-            this.value = false;
-        else
-            this.value = true;
+        this.value = this.value ? false : true;
         System.out.println("przełączono");
     }
 
@@ -38,12 +37,12 @@ public class OnOffDevice extends DeviceDetails implements DeviceInterface {
     public OnOffDevice() {
     }
 
-    public Integer getPin_number() {
-        return pin_number;
+    public Integer getPin() {
+        return pin;
     }
 
-    public void setPin_number(Integer pin_number) {
-        this.pin_number = pin_number;
+    public void setPin(Integer pin) {
+        this.pin = pin;
     }
 
     public Integer getId() {

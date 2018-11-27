@@ -3,6 +3,7 @@ package pl.coderslab.domain.devices;
 import pl.coderslab.domain.location.Location;
 
 import javax.persistence.*;
+import java.time.LocalDateTime;
 
 @MappedSuperclass
 public abstract class DeviceDetails {
@@ -23,7 +24,7 @@ public abstract class DeviceDetails {
 
     protected Integer type;
 
-    protected Integer order_id;
+    protected LocalDateTime updated;
 
 
     //CONCTRUCTOR, SETTERS AND GETTERS
@@ -76,13 +77,5 @@ public abstract class DeviceDetails {
 
     public void setLocation(Location location) {
         this.location = location;
-    }
-
-    public Integer getOrder_id() {
-        return order_id;
-    }
-
-    public void setOrder_id(Integer config_id) {
-        this.order_id = config_id;
     }
 }

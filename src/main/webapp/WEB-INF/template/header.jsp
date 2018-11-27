@@ -55,10 +55,10 @@
         </div>
         <!-- Sidebar Navidation Menus--><span class="heading">MENU GŁÓWNE</span>
         <ul class="list-unstyled">
-            <li class="active"><a href="index.html"> <i class="icon-home"></i>Dom</a></li>
-            <li><a href="tables.html"> <i class="icon-grid"></i>Konfiguracja</a></li>
-            <li><a href="charts.html"> <i class="fa fa-bar-chart"></i>Logi</a></li>
-            <li><a href="forms.html"> <i class="icon-padnote"></i>Inne</a></li>
+            <li class="active"><a href="index.html"> <i class="icon-home"></i>Urządzenia</a></li>
+            <li><a href="../views/locations/location-form.jsp"> <i class="icon-grid"></i>Pomieszczenia</a></li>
+            <li><a href="/config"> <i class="fa fa-bar-chart"></i>Konfiguracja</a></li>
+            <li><a href="forms.html"> <i class="icon-padnote"></i>Logi</a></li>
             <li><a href="#exampledropdownDropdown" aria-expanded="false" data-toggle="collapse"> <i class="icon-windows"></i>Domownicy</a>
                 <ul id="exampledropdownDropdown" class="collapse list-unstyled ">
                     <li><a href="#">Page</a></li>
