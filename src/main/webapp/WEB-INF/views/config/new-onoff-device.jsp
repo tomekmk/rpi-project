@@ -3,15 +3,6 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <jsp:include page="../../template/header.jsp"/>
 
-<!--
-private Integer type;
-
-private Integer status;
-
-@ManyToOne
-private Location location;
--->
-
 <section class="no-padding-top">
     <div class="container-fluid">
         <div class="row">
@@ -20,70 +11,45 @@ private Location location;
                 <div class="block">
                     <div class="title"><strong>Wprowadź dane urządzenia</strong></div>
                     <div class="block-body">
-                        <form:form modelAttribute="newDevice" method="post" action="/config/addnew/${typeNumber}" class="form-horizontal">
+                        <form:form modelAttribute="newDevice" method="post" action="/config/addnew/1" class="form-horizontal">
 
-                            <div class="form-group row">
+                        <div class="form-group row">
                             <label class="col-sm-3 form-control-label">Podaj nazwę urządzenia</label>
                             <div class="col-sm-9">
-                                <form:input path="name" cssClass="form-control" placeholder="nazwa urządzenia" />
+                                <form:input path="name" cssClass="form-control" placeholder="nazwa urządzenia"/>
+                                <small class="help-block-none"><form:errors path="name"/></small>
                             </div>
-                            </div>
-                            <div class="line"></div>
+                        </div>
+                        <div class="line"></div>
 
-                            <div class="form-group row">
+                        <div class="form-group row">
                             <label class="col-sm-3 form-control-label">Podaj opis urządzenia</label>
                             <div class="col-sm-9">
-                                <form:input path="description" cssClass="form-control" placeholder="opis urządzenia" />
+                                <form:input path="description" cssClass="form-control" placeholder="opis urządzenia"/>
+                                <small class="help-block-none"><form:errors path="description"/></small>
                             </div>
+                        </div>
+                        <div class="line"></div>
+
+
+                        <div class="form-group row">
+                            <label class="col-sm-3 form-control-label">Wybierz pin</label>
+                            <div class="col-sm-9">
+                                    <form:select path="pin" items="${pinsList}" cssClass="form-control mb-3 mb-3" itemValue="pinNumber" itemLabel="pinNumber"/>
+                                <small class="help-block-none"><form:errors path="pin"/></small>
                             </div>
+                        </div>
                             <div class="line"></div>
 
 
-                            <c:forEach items="${pinsList}" var="pin">
-                                <div class="i-checks">
-                                    <input id="radioCustom2" type="radio" checked="" value="${pin.pinNumber}" name="pin" class="radio-template">
-                                    <label for="radioCustom2">${pin.pinNumber}</label>
-                                </div>
-                            </c:forEach>
-
-
-
-                            <%--<div class="form-group row">--%>
-                            <%--<label class="col-sm-3 form-control-label">Podaj numer pinu raspberry</label>--%>
-                            <%--<div class="col-sm-9">--%>
-                                <%--<form:input path="pin" cssClass="form-control" placeholder="np. 13" />--%>
-                                <%--<small class="help-block-none"><form:errors path="pin" /></small>--%>
-                            <%--</div>--%>
-                            <%--</div>--%>
-                            <%--<div class="line"></div>--%>
-
-
-
-
-                            <!--<div class="form-group row">
-                        <label class="col-sm-3 form-control-label">Help text</label>
+                        <div class="form-group row">
+                            <label class="col-sm-3 form-control-label">Wybierz lokalizację</label>
                             <div class="col-sm-9">
-                                <input type="text" class="form-control"><small class="help-block-none">A block of help text that breaks onto a new line and may extend beyond one line.</small>
-                             </div>
+                                <form:select path="location" items="${locations}" cssClass="form-control mb-3 mb-3" itemValue="id" itemLabel="nameAndFloor"/>
+                                <small class="help-block-none"><form:errors path="location"/></small>
+                            </div>
                         </div>
-
-                      <div class="form-group row">
-                        <label class="col-sm-3 form-control-label">Placeholder</label>
-                        <div class="col-sm-9">
-                          <input type="text" placeholder="placeholder" class="form-control">
-                        </div>
-                      </div> -->
-
-                            <%--<div class="form-group row">--%>
-                                <%--<div class="col-sm-9">--%>
-                            <%--<c:forEach items="${locations}" var="location">--%>
-                                <%--<div class="i-checks">--%>
-                                    <%--<input id="radioCustom2" type="radio" checked="" value="${type.type}" name="type" class="radio-template">--%>
-                                    <%--<label for="radioCustom2">${type.name}</label>--%>
-                                <%--</div>--%>
-                            <%--</c:forEach>--%>
-                                <%--</div>--%>
-                            <%--</div>--%>
+                            <div class="line"></div>
 
 
                             <div class="form-group row">
@@ -91,13 +57,12 @@ private Location location;
                                     <button type="submit" class="btn btn-primary">Dalej</button>
                                 </div>
                             </div>
-                        </form:form>
+                            </form:form>
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
-    </div>
 </section>
-
 
 <jsp:include page="../../template/footer.jsp"/>

@@ -11,7 +11,6 @@ public class OnOffDevice extends DeviceDetails implements DeviceInterface {
 
     private Integer pin;
 
-    //todo move this value to DTO
     private boolean value;
 
 

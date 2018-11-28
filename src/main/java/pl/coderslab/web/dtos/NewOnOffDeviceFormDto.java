@@ -1,28 +1,38 @@
 package pl.coderslab.web.dtos;
 
-import org.hibernate.validator.constraints.NotBlank;
 import pl.coderslab.domain.location.Location;
 
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
-public class newOnOffDeviceFormDto {
+public class NewOnOffDeviceFormDto {
 
 
-    @NotNull @Size(min = 3)
+    @NotNull(message = "Nazwa nie może być pusta.")
+    @Size(min = 3, message = "Nazwa musi zawierać conajmniej 3 znaki.")
     protected String name;
 
     protected String description;
 
-    @NotNull
+    @NotNull(message = "Musisz wybrać lokalizację urządzenia. Jeżeli niema żadnej, najpierw ją utwórz.")
     protected Location location;
 
-    protected Integer status;
-
-    @NotNull @NotBlank
+//    @NotNull  //todo typy urządzeń
+//    @NotBlank
     protected Integer type;
 
-    public newOnOffDeviceFormDto() {
+    @NotNull(message = "Musisz wybrać pin raspberry. Jeżeli niema dostępnych, usuń jakieś urządzenie.")
+    protected Integer pin;
+
+    public NewOnOffDeviceFormDto() {
+    }
+
+    public Integer getPin() {
+        return pin;
+    }
+
+    public void setPin(Integer pin) {
+        this.pin = pin;
     }
 
     public String getName() {
@@ -47,14 +57,6 @@ public class newOnOffDeviceFormDto {
 
     public void setLocation(Location location) {
         this.location = location;
-    }
-
-    public Integer getStatus() {
-        return status;
-    }
-
-    public void setStatus(Integer status) {
-        this.status = status;
     }
 
     public Integer getType() {

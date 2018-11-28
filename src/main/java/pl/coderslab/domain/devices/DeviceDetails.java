@@ -4,6 +4,7 @@ import pl.coderslab.domain.location.Location;
 
 import javax.persistence.*;
 import java.time.LocalDateTime;
+import java.util.Objects;
 
 @MappedSuperclass
 public abstract class DeviceDetails {
@@ -24,11 +25,29 @@ public abstract class DeviceDetails {
 
     protected Integer type;
 
+    protected Integer orderId;
+
     protected LocalDateTime updated;
 
 
     //CONCTRUCTOR, SETTERS AND GETTERS
     public DeviceDetails() {
+    }
+
+    public Integer getOrderId() {
+        return orderId;
+    }
+
+    public void setOrderId(Integer orderId) {
+        this.orderId = orderId;
+    }
+
+    public LocalDateTime getUpdated() {
+        return updated;
+    }
+
+    public void setUpdated(LocalDateTime updated) {
+        this.updated = updated;
     }
 
     public Integer getId() {

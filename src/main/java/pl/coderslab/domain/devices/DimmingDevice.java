@@ -8,7 +8,7 @@ public class DimmingDevice extends DeviceDetails implements DeviceInterface {
     //todo rpi + sending status
 
     @OneToOne
-    private UsedPins pin;
+    private RaspberryPin pin;
     private boolean value = false;
     private Integer dimmingValue = 0;
 
@@ -39,11 +39,11 @@ public class DimmingDevice extends DeviceDetails implements DeviceInterface {
     public DimmingDevice() {
     }
 
-    public UsedPins getPin() {
+    public RaspberryPin getPin() {
         return pin;
     }
 
-    public void setPin(UsedPins pin) {
+    public void setPin(RaspberryPin pin) {
         this.pin = pin;
     }
 

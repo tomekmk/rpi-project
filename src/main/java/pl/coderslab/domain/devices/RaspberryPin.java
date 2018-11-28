@@ -3,8 +3,8 @@ package pl.coderslab.domain.devices;
 import javax.persistence.*;
 
 @Entity
-@Table(name = "used_pins")
-public class UsedPins {
+@Table(name = "raspberry_pins")
+public class RaspberryPin {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -16,11 +16,12 @@ public class UsedPins {
 
     private Boolean available;
 
-    public UsedPins() {
+    public RaspberryPin() {
     }
 
-    public UsedPins(Integer pinNumber) {
+    public RaspberryPin(Integer pinNumber, Boolean available) {
         this.pinNumber = pinNumber;
+        this.available = available;
     }
 
     public Integer getDeviceId() {

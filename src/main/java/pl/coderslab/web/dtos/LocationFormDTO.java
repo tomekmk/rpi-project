@@ -1,30 +1,20 @@
-package pl.coderslab.domain.location;
+package pl.coderslab.web.dtos;
 
-import javax.persistence.*;
+import org.hibernate.validator.constraints.NotBlank;
 
-@Entity
-@Table(name = "locations")
-public class Location {
+import javax.validation.constraints.NotNull;
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+public class LocationFormDTO {
 
+    @NotNull(message = "Nazwa pomieszczenia nie może być pusta")
+    @NotBlank(message = "Nazwa pomieszczenia nie może być pusta")
     private String name;
 
     private String type;
 
     private Integer floor;
 
-    public Location() {
-    }
-
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
+    public LocationFormDTO() {
     }
 
     public String getName() {
@@ -49,9 +39,5 @@ public class Location {
 
     public void setFloor(Integer floor) {
         this.floor = floor;
-    }
-
-    public String getNameAndFloor() {
-        return name + ", poziom " + floor;
     }
 }

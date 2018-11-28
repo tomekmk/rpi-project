@@ -78,3 +78,7 @@ body {
 .messages-block a.message:hover {
     background: #000000;
 }
+
+.table-striped tbody tr:nth-of-type(2n+1) {
+    background-color: #342c2c;
+}

@@ -1,3 +1,4 @@
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <jsp:include page="doc_header.jsp"/>
 
@@ -5,7 +6,7 @@
     <nav class="navbar navbar-expand-lg">
         <div class="container-fluid d-flex align-items-center justify-content-between">
             <div class="navbar-header">
-                <!-- Navbar Header--><a href="index.html" class="navbar-brand">
+                <!-- Navbar Header--><a href="/" class="navbar-brand">
                 <div class="brand-text brand-big visible text-uppercase"><strong class="text-primary">Smart</strong><strong>Home</strong></div>
                 <div class="brand-text brand-sm"><strong class="text-primary">S</strong><strong>H</strong></div></a>
 
@@ -55,10 +56,10 @@
         </div>
         <!-- Sidebar Navidation Menus--><span class="heading">MENU GŁÓWNE</span>
         <ul class="list-unstyled">
-            <li class="active"><a href="index.html"> <i class="icon-home"></i>Urządzenia</a></li>
-            <li><a href="../views/locations/location-form.jsp"> <i class="icon-grid"></i>Pomieszczenia</a></li>
-            <li><a href="/config"> <i class="fa fa-bar-chart"></i>Konfiguracja</a></li>
-            <li><a href="forms.html"> <i class="icon-padnote"></i>Logi</a></li>
+            <li <c:if test="${menu == 1}">class="active"</c:if> ><a href="/"> <i class="icon-home"></i>Urządzenia</a></li>
+            <li <c:if test="${menu == 2}">class="active"</c:if> ><a href="/location"> <i class="icon-grid"></i>Pomieszczenia</a></li>
+            <li <c:if test="${menu == 3}">class="active"</c:if> ><a href="/config"> <i class="fa fa-bar-chart"></i>Konfiguracja</a></li>
+            <li <c:if test="${menu == 4}">class="active"</c:if> ><a href="forms.html"> <i class="icon-padnote"></i>Logi</a></li>
             <li><a href="#exampledropdownDropdown" aria-expanded="false" data-toggle="collapse"> <i class="icon-windows"></i>Domownicy</a>
                 <ul id="exampledropdownDropdown" class="collapse list-unstyled ">
                     <li><a href="#">Page</a></li>

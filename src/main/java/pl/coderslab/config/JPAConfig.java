@@ -51,4 +51,6 @@ public class JPAConfig {
         localeResolver.setDefaultLocale(new Locale("pl"));
         return localeResolver;
     }
+
+
 }

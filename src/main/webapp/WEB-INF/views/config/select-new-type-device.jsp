@@ -16,9 +16,9 @@
                             <div class="form-group row">
                                 <div class="col-sm-9">
 
-                                    <c:forEach items="${types}" var="type">
+                                    <c:forEach items="${types}" var="type" varStatus="i">
                                     <div class="i-checks">
-                                        <input id="radioCustom2" type="radio" checked="" value="${type.type}" name="type" class="radio-template">
+                                        <input id="radioCustom2" type="radio" <c:if test="${i.index == 0}">checked</c:if> value="${type.type}" name="type" class="radio-template">
                                         <label for="radioCustom2">${type.name}</label>
                                     </div>
                                     </c:forEach>
