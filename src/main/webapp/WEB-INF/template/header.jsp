@@ -18,19 +18,19 @@
                 <div class="list-inline-item"><a href="#" class="search-open nav-link"><i class="icon-magnifying-glass-browser"></i></a></div>
                 <div class="list-inline-item dropdown"><a id="navbarDropdownMenuLink1" href="http://example.com" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" class="nav-link messages-toggle"><i class="icon-email"></i><span class="badge dashbg-1">5</span></a>
                     <div aria-labelledby="navbarDropdownMenuLink1" class="dropdown-menu messages"><a href="#" class="dropdown-item message d-flex align-items-center">
-                        <div class="profile"><img src="../../files/img/avatar-3.jpg" alt="..." class="img-fluid">
+                        <div class="profile"><img src="${pageContext.request.contextPath}/files/img/avatar-3.jpg" alt="..." class="img-fluid">
                             <div class="status online"></div>
                         </div>
                         <div class="content">   <strong class="d-block">Nadia Halsey</strong><span class="d-block">lorem ipsum dolor sit amit</span><small class="date d-block">9:30am</small></div></a><a href="#" class="dropdown-item message d-flex align-items-center">
-                        <div class="profile"><img src="../../files/img/avatar-2.jpg" alt="..." class="img-fluid">
+                        <div class="profile"><img src="${pageContext.request.contextPath}/files/img/avatar-2.jpg" alt="..." class="img-fluid">
                             <div class="status away"></div>
                         </div>
                         <div class="content">   <strong class="d-block">Peter Ramsy</strong><span class="d-block">lorem ipsum dolor sit amit</span><small class="date d-block">7:40am</small></div></a><a href="#" class="dropdown-item message d-flex align-items-center">
-                        <div class="profile"><img src="../../files/img/avatar-1.jpg" alt="..." class="img-fluid">
+                        <div class="profile"><img src="${pageContext.request.contextPath}/files/img/avatar-1.jpg" alt="..." class="img-fluid">
                             <div class="status busy"></div>
                         </div>
                         <div class="content">   <strong class="d-block">Sam Kaheil</strong><span class="d-block">lorem ipsum dolor sit amit</span><small class="date d-block">6:55am</small></div></a><a href="#" class="dropdown-item message d-flex align-items-center">
-                        <div class="profile"><img src="../../files/img/avatar-5.jpg" alt="..." class="img-fluid">
+                        <div class="profile"><img src="${pageContext.request.contextPath}/files/img/avatar-5.jpg" alt="..." class="img-fluid">
                             <div class="status offline"></div>
                         </div>
                         <div class="content">   <strong class="d-block">Sara Wood</strong><span class="d-block">lorem ipsum dolor sit amit</span><small class="date d-block">10:30pm</small></div></a><a href="#" class="dropdown-item text-center message"> <strong>See All Messages <i class="fa fa-angle-right"></i></strong></a></div>
@@ -48,7 +48,7 @@
     <nav id="sidebar">
         <!-- Sidebar Header-->
         <div class="sidebar-header d-flex align-items-center">
-            <div class="avatar"><img src="../../files/img/avatar-6.jpg" alt="..." class="img-fluid rounded-circle"></div>
+            <div class="avatar"><img src="${pageContext.request.contextPath}/files/img/avatar-6.jpg" alt="..." class="img-fluid rounded-circle"></div>
             <div class="title">
                 <h1 class="h5">Niezalogowany</h1>
                 <%--<p>Web Designer</p>--%>
@@ -56,9 +56,9 @@
         </div>
         <!-- Sidebar Navidation Menus--><span class="heading">MENU GŁÓWNE</span>
         <ul class="list-unstyled">
-            <li <c:if test="${menu == 1}">class="active"</c:if> ><a href="/"> <i class="icon-home"></i>Urządzenia</a></li>
-            <li <c:if test="${menu == 2}">class="active"</c:if> ><a href="/location"> <i class="icon-grid"></i>Pomieszczenia</a></li>
-            <li <c:if test="${menu == 3}">class="active"</c:if> ><a href="/config"> <i class="fa fa-bar-chart"></i>Konfiguracja</a></li>
+            <li <c:if test="${menu == 1}">class="active"</c:if> ><a href="${pageContext.request.contextPath}/"> <i class="icon-home"></i>Urządzenia</a></li>
+            <li <c:if test="${menu == 2}">class="active"</c:if> ><a href="${pageContext.request.contextPath}/location"> <i class="icon-grid"></i>Pomieszczenia</a></li>
+            <li <c:if test="${menu == 3}">class="active"</c:if> ><a href="${pageContext.request.contextPath}/config"> <i class="fa fa-bar-chart"></i>Konfiguracja</a></li>
             <li <c:if test="${menu == 4}">class="active"</c:if> ><a href="forms.html"> <i class="icon-padnote"></i>Logi</a></li>
             <li><a href="#exampledropdownDropdown" aria-expanded="false" data-toggle="collapse"> <i class="icon-windows"></i>Domownicy</a>
                 <ul id="exampledropdownDropdown" class="collapse list-unstyled ">

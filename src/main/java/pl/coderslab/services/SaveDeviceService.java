@@ -8,7 +8,7 @@ import pl.coderslab.dal.repositories.PinRepo;
 import pl.coderslab.domain.devices.DimmingDevice;
 import pl.coderslab.domain.devices.OnOffDevice;
 import pl.coderslab.domain.devices.RaspberryPin;
-import pl.coderslab.web.dtos.NewOnOffDeviceFormDto;
+import pl.coderslab.web.dtos.NewOnOffAndDimmingDeviceFormDto;
 
 import javax.validation.Valid;
 import java.time.LocalDateTime;
@@ -23,37 +23,44 @@ public class SaveDeviceService {
     DeviceRepo<DimmingDevice> dimmingDeviceRepo;
     @Autowired
     PinRepo pinRepo;
-    @Autowired
-    LocationService locationService;
 
-    public void save(@Valid NewOnOffDeviceFormDto form) {
+    private static Integer order = 1;
+
+    public void saveOnOffDevice(@Valid NewOnOffAndDimmingDeviceFormDto form) {
         OnOffDevice device = new OnOffDevice();
         device.setName(form.getName());
         device.setDescription(form.getDescription());
+        device.setOrderId(order++);
         device.setLocation(form.getLocation());
         device.setStatus(1);
         device.setType(1);
         device.setUpdated(LocalDateTime.now());
         device.setPin(form.getPin());
-        device.setValue(true);
+        device.setValue(false);
         onOffDeviceRepo.save(device);
-
-        RaspberryPin devicePin = pinRepo.findFirstByPinNumber(device.getPin());
-        devicePin.setAvailable(false);
-        devicePin.setDeviceId(device.getId());
-        pinRepo.save(devicePin);
+        setRaspberryOnePin(device.getPin(), device.getId());
     }
 
-    public void save(DimmingDevice form) {
+    public void saveDimmingDevice(@Valid NewOnOffAndDimmingDeviceFormDto form) {
         DimmingDevice device = new DimmingDevice();
         device.setName(form.getName());
         device.setDescription(form.getDescription());
+        device.setOrderId(order++);
         device.setLocation(form.getLocation());
         device.setStatus(1);
-        device.setType(form.getType());
+        device.setType(2);
         device.setUpdated(LocalDateTime.now());
         device.setPin(form.getPin());
-        device.setValue(true);
+        device.setValue(false);
+        device.setDimmingValue(0);
         dimmingDeviceRepo.save(device);
+        setRaspberryOnePin(device.getPin(), device.getId());
+    }
+
+    private void setRaspberryOnePin(Integer pin, Long deviceId) {
+        RaspberryPin devicePin = pinRepo.findFirstByPinNumber(pin);
+        devicePin.setAvailable(false);
+        devicePin.setDeviceId(deviceId);
+        pinRepo.save(devicePin);
     }
 }

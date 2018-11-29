@@ -14,6 +14,9 @@ public interface PinRepo extends JpaRepository<RaspberryPin, Long> {
     @Query("SELECT p FROM RaspberryPin p WHERE p.available = true")
     List<RaspberryPin> getAvailablePins();
 
+    @Query("SELECT p FROM RaspberryPin p WHERE p.available = false ")
+    List<RaspberryPin> getUsedPins();
+
     @Query("SELECT p.available FROM RaspberryPin p WHERE p.pinNumber = ?1")
     boolean checkIsPinFree(Integer pinNumber);
 }

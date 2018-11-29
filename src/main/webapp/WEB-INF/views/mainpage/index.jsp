@@ -8,37 +8,44 @@
         <div class="row">
 
             <c:forEach items="${buttons}" var="button">
-                <div class="col-md-3 col-sm-6 smartbutton" data-btnid="${button.id}" data-btntype="${button.type}">
-                    <div class="statistic-block block">
-                        <c:choose>
-
-                            <c:when test="${button.type == 1}">
+                <c:choose>
+                    <c:when test="${button.type == 1}">
+                        <div class="col-md-3 col-sm-6 smartbutton" data-btnid="${button.id}" data-btntype="${button.type}">
+                            <div class="statistic-block block">
                                 <div class="progress-details d-flex align-items-end justify-content-between">
                                     <div class="title">
-                                        <div class="icon"><i class="icon-user-1"></i></div>     <!-- todo correct icon-->
+                                        <div class="icon"><i class="icon-user-1"></i></div>
+                                        <!-- todo correct icon-->
                                         <strong>${button.name}</strong>
                                     </div>
-                                    <div class="number dashtext-1"></div>        <!-- todo correct value -->
+                                    <div class="number dashtext-1"></div>
                                 </div>
-                            </c:when>
+                            </div>
+                        </div>
+                    </c:when>
 
-                            <c:when test="${button.type == 2}">
-                                <div class="progress-details d-flex align-items-end justify-content-between" data-butt-id="${button.id}">
+                    <c:when test="${button.type == 2}">
+                        <div class="col-md-3 col-sm-6 smartbutton" data-btnid="${button.id}" data-btntype="${button.type}">
+                            <div class="statistic-block block">
+                                <div class="progress-details d-flex align-items-end justify-content-between">
                                     <div class="title">
-                                        <div class="icon"><i class="icon-user-1"></i></div>     <!-- todo correct icon -->
+                                        <div class="icon"><i class="icon-user-1"></i></div>
+                                        <!-- todo correct icon-->
                                         <strong>${button.name}</strong>
                                     </div>
-                                    <div class="number dashtext-1"></div>       <!-- todo correct value -->
+                                    <div class="number dashtext-1"></div>
                                 </div>
                                 <div class="progress progress-template">
-                                    <div role="progressbar" style="width: 30%" aria-valuenow="30" aria-valuemin="0"
-                                         aria-valuemax="100" class="progress-bar progress-bar-template dashbg-1"></div>
+                                    <div role="progressbar" style="width: 0%" aria-valuenow="0" aria-valuemin="0"
+                                         aria-valuemax="100" class="progress-bar progress-bar-template dashbg-1">
+                                        </div>
+                                    <%--<div class="dragable" style="display: block; width: 10px; height: 10px; border: 1px solid black;"></div>--%>
                                 </div>
-                            </c:when>
+                            </div>
+                        </div>
+                    </c:when>
 
-                        </c:choose>
-                    </div>
-                </div>
+                </c:choose>
             </c:forEach>
 
 
@@ -46,7 +53,7 @@
     </div>
 </section>
 
-<!--       ------------------------   FUNKCJONALNOŚĆ WIADOMOŚCI UŻYTKOWNIKÓW  ----------------------------- -->
+<!-- ------------------------ FUNKCJONALNOŚĆ WIADOMOŚCI UŻYTKOWNIKÓW ----------------------------- -->
 
 <%--<section class="no-padding-bottom">--%>
 <%--<div class="container-fluid">--%>

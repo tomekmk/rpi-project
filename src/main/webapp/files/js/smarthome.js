@@ -1,36 +1,136 @@
 $(document).ready(function () {
 
-    let button = $(".smartbutton");
+    let buttons = $(".smartbutton");
 
-    button.each(function (index, element) {
+    buttons.each(function (index, element) {
+        let deviceType = element.dataset.btntype;
 
-        console.log("loaded " + index);
+        switch (deviceType) {
+            case "1":
 
-        if (element.dataset.btntype == "1") {
-            $(this).on("click", function () {
+                $(this).on("click", function () {
+                    let controlValue = {
+                        "deviceId": element.dataset.btnid
+                    };
+                    sendAjax("/control/toggle", controlValue, deviceType, element);
+                });
+                break;
 
-                let controlValue = {
-                    "type": "1",
-                    "deviceId": element.dataset.btnid,
-                    "value": true
-                };
+            case "2" :
 
-                $.ajax({
-                    url: "http://localhost:8080/control/onoff",
-                    data: JSON.stringify(controlValue),
-                    contentType: "application/json",
-                    type: "post",
-                    dataType: "json"
-                })
-                    .done(function (result) {
-                        console.log("odpowiedź")
-                    })
-                    .fail(function () {
-                        console.log("brak odpowiedzi")
+                $( function() {
+                    let progressbar = $(".progress.progress-template");
+                    progressbar.slider({
+                        range: "min",
+                        value: 0,
+                        min: 0,
+                        max: 100,
+                        slide: function( event, ui ) {
+                            event.stopPropagation();
+                                let controlValue = {
+                                    "deviceId": this.parentElement.parentElement.dataset.btnid,
+                                    "dimmValue": ui.value
+                                };
+
+
+                                sendAjax("/control/dimming/value", controlValue, deviceType, this.parentElement.parentElement)
+                        }
                     });
-            });
-        }
+                } );
 
+                $(this).on("click", function () {
+                    let controlValue = {
+                        "deviceId": element.dataset.btnid
+                    };
+                    sendAjax("/control/dimming/toggle", controlValue, deviceType, element);
+                });
+                break;
+
+        }
     });
+
+    function sendAjax(url, data, deviceType, element) {
+        $.ajax({
+            url: appUri+url,
+            data: JSON.stringify(data),
+            contentType: "application/json",
+            type: "post",
+            dataType: "json"
+        })
+            .done(function (result) {
+                if (deviceType == "1") onOffToggle(element, result);
+                if (deviceType == "2") dimmingValue(element, result);
+            })
+            .fail(function () {
+                console.log("brak odpowiedzi");
+            });
+    }
+
+    function onOffToggle(element, result) {
+        if (result) {
+            element.firstElementChild.style.backgroundColor = "dimgray";
+            element.querySelector(".number").innerText = "On";
+        } else {
+            element.firstElementChild.style.backgroundColor = "#463f3f";
+            element.querySelector(".number").innerText = "Off";
+        }
+    }
+
+    function dimmingValue(element, result) {
+        if (typeof result === "boolean") {
+            if (result)
+                dimmingSetOn(element, "100");
+            else
+                dimmingSetOff(element);
+        } else {
+            if (result > 0)
+                dimmingSetOn(element, result);
+            else
+                dimmingSetOff(element);
+        }
+    }
+
+    function dimmingSetOn(element, value) {
+        element.firstElementChild.style.backgroundColor = "dimgray";
+        element.querySelector(".number").innerText = value + "%";
+         element.querySelector(".ui-slider-range").style.width = value + "%";
+        element.querySelector(".ui-slider-handle").style.left = value + "%";
+    }
+
+    function dimmingSetOff(element) {
+        element.firstElementChild.style.backgroundColor = "#463f3f";
+        element.querySelector(".number").innerText = "Off";
+        element.querySelector(".ui-slider-range").style.width = "0%";
+        element.querySelector(".ui-slider-handle").style.left = "0%";
+    }
+
+    setInterval(function () {
+        $.ajax({
+            url: appUri+"/control/getall",
+            // data: JSON.stringify(data),
+            contentType: "application/json",
+            type: "post",
+            dataType: "json"
+        })
+            .done(function (result) {
+                result.forEach(function (element) {
+                    buttons.each(function (index, button) {
+                        if (button.dataset.btntype == element.type && button.dataset.btnid == element.id)
+                            switch (element.type) {
+                                case 1:
+                                    onOffToggle(button, element.value);
+                                    return;
+                                case 2:
+                                    dimmingValue(button, element.dimmingValue);
+                                    return;
+
+                            }
+                    });
+                });
+            })
+            .fail(function () {
+                console.log("brak odpowiedzi");
+            });
+    }, 1000)
 
 });

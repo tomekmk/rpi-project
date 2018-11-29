@@ -3,7 +3,9 @@ package pl.coderslab.web.controllers;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.RequestMapping;
 import pl.coderslab.domain.devices.DeviceDetails;
 import pl.coderslab.services.ViewService;
 
@@ -20,13 +22,9 @@ public class HomePageController {
     @GetMapping
     public String homepage(Model model) {
         List<DeviceDetails> devices = viewService.getAllDevicesOrdered();
-
         model.addAttribute("buttons", devices);
         return "/mainpage/index";
     }
-
-
-
 
 
     @ModelAttribute("menu")

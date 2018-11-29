@@ -9,9 +9,9 @@
             <!-- Form Elements -->
             <div class="col-lg-12">
                 <div class="block">
-                    <div class="title"><strong>Wprowadź dane urządzenia typu włącz/wyłącz</strong></div>
+                    <div class="title"><strong>Wprowadź dane urządzenia z regulacją zakresu</strong></div>
                     <div class="block-body">
-                        <form:form modelAttribute="newDevice" method="post" action="${pageContext.request.contextPath}/config/addnew/1" class="form-horizontal">
+                        <form:form modelAttribute="newDevice" method="post" action="${pageContext.request.contextPath}/config/addnew/2" class="form-horizontal">
 
                         <div class="form-group row">
                             <label class="col-sm-3 form-control-label">Podaj nazwę urządzenia</label>

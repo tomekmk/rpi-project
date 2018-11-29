@@ -82,3 +82,20 @@ body {
 .table-striped tbody tr:nth-of-type(2n+1) {
     background-color: #342c2c;
 }
+
+.dashtext-1 {
+    color: black !important;
+}
+
+.progress-bar.progress-bar-template {
+    height: 15px;
+}
+
+.progress.progress-template {
+    height: 15px;
+    margin-top: 10px;
+}
+
+.dashbg-1 {
+    /*background: #e0a800;*/
+}

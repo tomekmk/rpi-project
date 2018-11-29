@@ -4,14 +4,13 @@ import pl.coderslab.domain.location.Location;
 
 import javax.persistence.*;
 import java.time.LocalDateTime;
-import java.util.Objects;
 
 @MappedSuperclass
 public abstract class DeviceDetails {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    protected Integer id;
+    protected Long id;
 
     protected String name;
 
@@ -34,28 +33,12 @@ public abstract class DeviceDetails {
     public DeviceDetails() {
     }
 
-    public Integer getOrderId() {
-        return orderId;
-    }
-
-    public void setOrderId(Integer orderId) {
-        this.orderId = orderId;
-    }
-
-    public LocalDateTime getUpdated() {
-        return updated;
-    }
-
-    public void setUpdated(LocalDateTime updated) {
-        this.updated = updated;
-    }
-
-    public Integer getId() {
+    public Long getId() {
         return id;
     }
 
-    public void setId(Integer device_id) {
-        this.id = device_id;
+    public void setId(Long id) {
+        this.id = id;
     }
 
     public String getName() {
@@ -74,12 +57,12 @@ public abstract class DeviceDetails {
         this.description = description;
     }
 
-    public Integer getType() {
-        return type;
+    public Location getLocation() {
+        return location;
     }
 
-    public void setType(Integer type) {
-        this.type = type;
+    public void setLocation(Location location) {
+        this.location = location;
     }
 
     public Integer getStatus() {
@@ -90,11 +73,27 @@ public abstract class DeviceDetails {
         this.status = status;
     }
 
-    public Location getLocation() {
-        return location;
+    public Integer getType() {
+        return type;
     }
 
-    public void setLocation(Location location) {
-        this.location = location;
+    public void setType(Integer type) {
+        this.type = type;
+    }
+
+    public Integer getOrderId() {
+        return orderId;
+    }
+
+    public void setOrderId(Integer orderId) {
+        this.orderId = orderId;
+    }
+
+    public LocalDateTime getUpdated() {
+        return updated;
+    }
+
+    public void setUpdated(LocalDateTime updated) {
+        this.updated = updated;
     }
 }

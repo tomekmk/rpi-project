@@ -5,7 +5,7 @@ import pl.coderslab.domain.location.Location;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
-public class NewOnOffDeviceFormDto {
+public class NewOnOffAndDimmingDeviceFormDto {
 
 
     @NotNull(message = "Nazwa nie może być pusta.")
@@ -24,15 +24,7 @@ public class NewOnOffDeviceFormDto {
     @NotNull(message = "Musisz wybrać pin raspberry. Jeżeli niema dostępnych, usuń jakieś urządzenie.")
     protected Integer pin;
 
-    public NewOnOffDeviceFormDto() {
-    }
-
-    public Integer getPin() {
-        return pin;
-    }
-
-    public void setPin(Integer pin) {
-        this.pin = pin;
+    public NewOnOffAndDimmingDeviceFormDto() {
     }
 
     public String getName() {
@@ -65,5 +57,13 @@ public class NewOnOffDeviceFormDto {
 
     public void setType(Integer type) {
         this.type = type;
+    }
+
+    public Integer getPin() {
+        return pin;
+    }
+
+    public void setPin(Integer pin) {
+        this.pin = pin;
     }
 }

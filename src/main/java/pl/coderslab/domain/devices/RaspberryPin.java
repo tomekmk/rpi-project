@@ -12,7 +12,7 @@ public class RaspberryPin {
 
     private Integer pinNumber;
 
-    private Integer deviceId;
+    private Long deviceId;
 
     private Boolean available;
 
@@ -21,22 +21,6 @@ public class RaspberryPin {
 
     public RaspberryPin(Integer pinNumber, Boolean available) {
         this.pinNumber = pinNumber;
-        this.available = available;
-    }
-
-    public Integer getDeviceId() {
-        return deviceId;
-    }
-
-    public void setDeviceId(Integer deviceId) {
-        this.deviceId = deviceId;
-    }
-
-    public Boolean getAvailable() {
-        return available;
-    }
-
-    public void setAvailable(Boolean available) {
         this.available = available;
     }
 
@@ -54,6 +38,22 @@ public class RaspberryPin {
 
     public void setPinNumber(Integer pinNumber) {
         this.pinNumber = pinNumber;
+    }
+
+    public Long getDeviceId() {
+        return deviceId;
+    }
+
+    public void setDeviceId(Long deviceId) {
+        this.deviceId = deviceId;
+    }
+
+    public Boolean getAvailable() {
+        return available;
+    }
+
+    public void setAvailable(Boolean available) {
+        this.available = available;
     }
 
     @Override
