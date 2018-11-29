@@ -96,4 +96,8 @@ public abstract class DeviceDetails {
     public void setUpdated(LocalDateTime updated) {
         this.updated = updated;
     }
+
+    public String getLastUpdated() {
+        return updated.getHour() + ":" + updated.getMinute() + ":" + updated.getSecond();
+    }
 }

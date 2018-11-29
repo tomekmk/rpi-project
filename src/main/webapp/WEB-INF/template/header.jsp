@@ -38,7 +38,7 @@
 
 
                 <!-- Log out               -->
-                <div class="list-inline-item logout">                   <a id="logout" href="login.html" class="nav-link">Wyloguj<i class="icon-logout"></i></a></div>
+                <%--<div class="list-inline-item logout">                   <a id="logout" href="login.html" class="nav-link">Wyloguj<i class="icon-logout"></i></a></div>--%>
             </div>
         </div>
     </nav>
@@ -48,7 +48,8 @@
     <nav id="sidebar">
         <!-- Sidebar Header-->
         <div class="sidebar-header d-flex align-items-center">
-            <div class="avatar"><img src="${pageContext.request.contextPath}/files/img/avatar-6.jpg" alt="..." class="img-fluid rounded-circle"></div>
+            <div class="avatar"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/9/9f/%3Fuestionmark.svg/220px-%3Fuestionmark.svg.png" alt="..." class="img-fluid rounded-circle"></div>
+            <%--${pageContext.request.contextPath}/files/img/avatar-6.jpg--%>
             <div class="title">
                 <h1 class="h5">Niezalogowany</h1>
                 <%--<p>Web Designer</p>--%>

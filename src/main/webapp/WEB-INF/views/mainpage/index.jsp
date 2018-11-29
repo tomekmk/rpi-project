@@ -14,9 +14,9 @@
                             <div class="statistic-block block">
                                 <div class="progress-details d-flex align-items-end justify-content-between">
                                     <div class="title">
-                                        <div class="icon"><i class="icon-user-1"></i></div>
-                                        <!-- todo correct icon-->
-                                        <strong>${button.name}</strong>
+                                        <div class="icon"><i class="icon-user-1"><strong>${button.name}</strong></i></div>
+                                        <strong><span class="updated">${button.lastUpdated}</span></strong>
+
                                     </div>
                                     <div class="number dashtext-1"></div>
                                 </div>
@@ -29,9 +29,8 @@
                             <div class="statistic-block block">
                                 <div class="progress-details d-flex align-items-end justify-content-between">
                                     <div class="title">
-                                        <div class="icon"><i class="icon-user-1"></i></div>
-                                        <!-- todo correct icon-->
-                                        <strong>${button.name}</strong>
+                                        <div class="icon"><i class="icon-user-1"><strong>${button.name}</strong></i></div>
+                                        <strong><span class="updated">${button.lastUpdated}</span></strong>
                                     </div>
                                     <div class="number dashtext-1"></div>
                                 </div>

@@ -1,6 +1,7 @@
 package pl.coderslab.dal.repositories;
 
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 import pl.coderslab.domain.devices.DimmingDevice;
@@ -16,4 +17,7 @@ public interface DimmingDeviceRepo extends JpaRepository<DimmingDevice, Long> {
 
     DimmingDevice findFirstById(Long id);
     DimmingDevice findFirstByPin(Integer pin);
+
+//    @Query(value = "SELECT max(orderId) FROM dimming_devices", nativeQuery = true)
+//    Integer findMaxId();
 }

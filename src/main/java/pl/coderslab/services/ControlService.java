@@ -25,17 +25,17 @@ public class ControlService {
     public boolean onOffDeviceToggle(DeviceStatusDto status) {
         OnOffDevice device = onOffDeviceRepo.findFirstById(status.getDeviceId());
         boolean value = device.isValue();
-        System.out.println("------------------------------------------------------------" + value);
+
         if (value) {
             device.setValue(false);
             device.setUpdated(LocalDateTime.now());
-            onOffDeviceRepo.save(device);
             pinsService.setOnOffPinStatus(device.getPin(), false);
+            onOffDeviceRepo.save(device);
         } else {
             device.setValue(true);
             device.setUpdated(LocalDateTime.now());
-            onOffDeviceRepo.save(device);
             pinsService.setOnOffPinStatus(device.getPin(), true);
+            onOffDeviceRepo.save(device);
         }
 
         return !value;
@@ -48,11 +48,13 @@ public class ControlService {
             device.setValue(false);
             device.setDimmingValue(0);
             device.setUpdated(LocalDateTime.now());
+            pinsService.setDimmingPinStatus(device.getPin(), 0);
             dimmingDeviceRepo.save(device);
         } else {
             device.setValue(true);
             device.setDimmingValue(100);
             device.setUpdated(LocalDateTime.now());
+            pinsService.setDimmingPinStatus(device.getPin(), 100);
             dimmingDeviceRepo.save(device);
         }
 
@@ -66,11 +68,13 @@ public class ControlService {
             device.setValue(false);
             device.setDimmingValue(0);
             device.setUpdated(LocalDateTime.now());
+            pinsService.setDimmingPinStatus(device.getPin(), 0);
             dimmingDeviceRepo.save(device);
         } else {
             device.setValue(true);
             device.setDimmingValue(dimmValue);
             device.setUpdated(LocalDateTime.now());
+            pinsService.setDimmingPinStatus(device.getPin(), dimmValue);
             dimmingDeviceRepo.save(device);
         }
 

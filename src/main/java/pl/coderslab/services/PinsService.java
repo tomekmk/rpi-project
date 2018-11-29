@@ -22,7 +22,8 @@ public class PinsService {
     @Autowired
     DimmingDeviceRepo dimmingDeviceRepo;
 
-    Map<Integer, GpioPinOutput> initializedPins = new HashMap<>();
+//    Map<Integer, GpioPinOutput> initializedPins = new HashMap<>();
+//    GpioController gpio;
 
     public List<RaspberryPin> createAvailablePins() {
         for (int i = 0; i <= 16; i++)
@@ -51,31 +52,47 @@ public class PinsService {
     }
 
     public void setOnOffPinStatus(Integer pinNumber, boolean value) {
-        GpioPinDigitalOutput currentPin = (GpioPinDigitalOutput) this.initializedPins.get(pinNumber);
-        currentPin.setState(value);
+//        GpioPinDigitalOutput currentPin = (GpioPinDigitalOutput) this.initializedPins.get(pinNumber);
+//        currentPin.setState(value);
     }
 
+    public void setDimmingPinStatus(Integer pinNumber, Integer value) {
+//        GpioPinPwmOutput currentPin = (GpioPinPwmOutput) this.initializedPins.get(pinNumber);
+//        currentPin.setPwm(value*2);
+    }
 
     public void initRaspberryPins() {
-        Map<Integer, GpioPinOutput> initializingPins = new HashMap<>();
-        GpioController gpio = GpioFactory.getInstance();
+//        Map<Integer, GpioPinOutput> initializingPins = new HashMap<>();
+//        this.gpio = GpioFactory.getInstance();
+//
+//        List<RaspberryPin> allPins = getUsedPins();
+//
+//        for (RaspberryPin pin : allPins) {
+//            if (onOffDeviceRepo.findFirstByPin(pin.getPinNumber()) != null) {
+//                GpioPinDigitalOutput currentPin =
+//                        this.gpio.provisionDigitalOutputPin(RaspiPin.getPinByAddress(pin.getPinNumber()), PinState.LOW);
+//                initializingPins.put(pin.getPinNumber(), currentPin);
+//            }
+//
+//            if (dimmingDeviceRepo.findFirstByPin(pin.getPinNumber()) != null) {
+//                GpioPinPwmOutput currentPin =
+//                        this.gpio.provisionPwmOutputPin(RaspiPin.getPinByAddress(pin.getPinNumber()), 0);
+//                initializingPins.put(pin.getPinNumber(), currentPin);
+//            }
+//        }
+//
+//        this.initializedPins = initializingPins;
+    }
 
-        List<RaspberryPin> allPins = getUsedPins();
+    public void initNewOnOffPin(Integer pinNumber) {
+//        GpioPinDigitalOutput currentPin =
+//                this.gpio.provisionDigitalOutputPin(RaspiPin.getPinByAddress(pinNumber), PinState.LOW);
+//        this.initializedPins.put(pinNumber, currentPin);
+    }
 
-        for (RaspberryPin pin : allPins) {
-            if (onOffDeviceRepo.findFirstByPin(pin.getPinNumber()) != null) {
-                GpioPinDigitalOutput currentPin =
-                        gpio.provisionDigitalOutputPin(RaspiPin.getPinByAddress(pin.getPinNumber()), PinState.LOW);
-                initializingPins.put(pin.getPinNumber(), currentPin);
-            }
-
-            if (dimmingDeviceRepo.findFirstByPin(pin.getPinNumber()) != null) {
-                GpioPinPwmOutput currentPin =
-                        gpio.provisionPwmOutputPin(RaspiPin.getPinByAddress(pin.getPinNumber()), 0);
-                initializingPins.put(pin.getPinNumber(), currentPin);
-            }
-        }
-
-        this.initializedPins = initializingPins;
+    public void initNewDimmingPin(Integer pinNumber) {
+//        GpioPinPwmOutput currentPin =
+//                this.gpio.provisionPwmOutputPin(RaspiPin.getPinByAddress(pinNumber), 0);
+//        this.initializedPins.put(pinNumber, currentPin);
     }
 }

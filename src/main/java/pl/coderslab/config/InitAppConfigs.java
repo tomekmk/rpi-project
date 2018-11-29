@@ -4,6 +4,7 @@ package pl.coderslab.config;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import pl.coderslab.services.PinsService;
+import pl.coderslab.services.SaveDeviceService;
 
 import javax.annotation.PostConstruct;
 
@@ -12,6 +13,8 @@ public class InitAppConfigs {
 
     @Autowired
     PinsService pinsService;
+    @Autowired
+    SaveDeviceService saveDeviceService;
 
     @PostConstruct
     private void initPins() {
@@ -19,6 +22,7 @@ public class InitAppConfigs {
             pinsService.createAvailablePins();
 
         pinsService.initRaspberryPins();
+//        saveDeviceService.setMaxOrderId();
     }
 
 }

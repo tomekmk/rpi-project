@@ -4,6 +4,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import pl.coderslab.dal.repositories.DeviceRepo;
+import pl.coderslab.dal.repositories.DimmingDeviceRepo;
+import pl.coderslab.dal.repositories.OnOffDeviceRepo;
 import pl.coderslab.dal.repositories.PinRepo;
 import pl.coderslab.domain.devices.DimmingDevice;
 import pl.coderslab.domain.devices.OnOffDevice;
@@ -23,8 +25,31 @@ public class SaveDeviceService {
     DeviceRepo<DimmingDevice> dimmingDeviceRepo;
     @Autowired
     PinRepo pinRepo;
+    @Autowired
+    PinsService pinsService;
+    @Autowired
+    OnOffDeviceRepo onOffDeviceRepoz;
+    @Autowired
+    DimmingDeviceRepo dimmingDeviceRepoz;
 
     private static Integer order = 1;
+
+//    public void setMaxOrderId() {
+//        Integer onOffMaxId = onOffDeviceRepoz.findMaxId();
+//        Integer dimmingMaxId = dimmingDeviceRepoz.findMaxId();
+//        if (onOffMaxId == null && dimmingMaxId == null)
+//            return;
+//        if (onOffMaxId == null)
+//            order = dimmingMaxId + 1;
+//        if (dimmingMaxId == null)
+//            order = onOffMaxId + 1;
+//
+//
+//        if (onOffMaxId > dimmingMaxId)
+//            order = onOffMaxId + 1;
+//        else
+//            order = dimmingMaxId + 1;
+//    }
 
     public void saveOnOffDevice(@Valid NewOnOffAndDimmingDeviceFormDto form) {
         OnOffDevice device = new OnOffDevice();
@@ -39,6 +64,7 @@ public class SaveDeviceService {
         device.setValue(false);
         onOffDeviceRepo.save(device);
         setRaspberryOnePin(device.getPin(), device.getId());
+        pinsService.initNewOnOffPin(device.getPin());
     }
 
     public void saveDimmingDevice(@Valid NewOnOffAndDimmingDeviceFormDto form) {
@@ -55,6 +81,7 @@ public class SaveDeviceService {
         device.setDimmingValue(0);
         dimmingDeviceRepo.save(device);
         setRaspberryOnePin(device.getPin(), device.getId());
+        pinsService.initNewDimmingPin(device.getPin());
     }
 
     private void setRaspberryOnePin(Integer pin, Long deviceId) {

@@ -1,5 +1,7 @@
 $(document).ready(function () {
 
+    let lock = false;
+
     let buttons = $(".smartbutton");
 
     buttons.each(function (index, element) {
@@ -18,25 +20,30 @@ $(document).ready(function () {
 
             case "2" :
 
-                $( function() {
+                $(function () {
                     let progressbar = $(".progress.progress-template");
                     progressbar.slider({
                         range: "min",
                         value: 0,
                         min: 0,
                         max: 100,
-                        slide: function( event, ui ) {
+                        slide: function (event, ui) {
                             event.stopPropagation();
-                                let controlValue = {
-                                    "deviceId": this.parentElement.parentElement.dataset.btnid,
-                                    "dimmValue": ui.value
-                                };
+                            let controlValue = {
+                                "deviceId": this.parentElement.parentElement.dataset.btnid,
+                                "dimmValue": ui.value
+                            };
 
-
-                                sendAjax("/control/dimming/value", controlValue, deviceType, this.parentElement.parentElement)
+                            if (lock === false) {
+                                lock = true;
+                                sendAjax("/control/dimming/value", controlValue, deviceType, this.parentElement.parentElement);
+                                setTimeout(function () {
+                                    lock = false;
+                                }, 40);
+                            }
                         }
                     });
-                } );
+                });
 
                 $(this).on("click", function () {
                     let controlValue = {
@@ -51,7 +58,7 @@ $(document).ready(function () {
 
     function sendAjax(url, data, deviceType, element) {
         $.ajax({
-            url: appUri+url,
+            url: appUri + url,
             data: JSON.stringify(data),
             contentType: "application/json",
             type: "post",
@@ -66,7 +73,9 @@ $(document).ready(function () {
             });
     }
 
-    function onOffToggle(element, result) {
+    function onOffToggle(element, result, updated) {
+        if (typeof updated === "string")
+            element.querySelector(".updated").innerText = updated;
         if (result) {
             element.firstElementChild.style.backgroundColor = "dimgray";
             element.querySelector(".number").innerText = "On";
@@ -76,7 +85,9 @@ $(document).ready(function () {
         }
     }
 
-    function dimmingValue(element, result) {
+    function dimmingValue(element, result, updated) {
+        if (typeof updated === "string")
+            element.querySelector(".updated").innerText = updated;
         if (typeof result === "boolean") {
             if (result)
                 dimmingSetOn(element, "100");
@@ -93,7 +104,7 @@ $(document).ready(function () {
     function dimmingSetOn(element, value) {
         element.firstElementChild.style.backgroundColor = "dimgray";
         element.querySelector(".number").innerText = value + "%";
-         element.querySelector(".ui-slider-range").style.width = value + "%";
+        element.querySelector(".ui-slider-range").style.width = value + "%";
         element.querySelector(".ui-slider-handle").style.left = value + "%";
     }
 
@@ -105,32 +116,34 @@ $(document).ready(function () {
     }
 
     setInterval(function () {
-        $.ajax({
-            url: appUri+"/control/getall",
-            // data: JSON.stringify(data),
-            contentType: "application/json",
-            type: "post",
-            dataType: "json"
-        })
-            .done(function (result) {
-                result.forEach(function (element) {
-                    buttons.each(function (index, button) {
-                        if (button.dataset.btntype == element.type && button.dataset.btnid == element.id)
-                            switch (element.type) {
-                                case 1:
-                                    onOffToggle(button, element.value);
-                                    return;
-                                case 2:
-                                    dimmingValue(button, element.dimmingValue);
-                                    return;
-
-                            }
-                    });
-                });
+        if (!lock) {
+            $.ajax({
+                url: appUri + "/control/getall",
+                contentType: "application/json",
+                type: "post",
+                dataType: "json"
             })
-            .fail(function () {
-                console.log("brak odpowiedzi");
-            });
+                .done(function (result) {
+                    result.forEach(function (element) {
+                        buttons.each(function (index, button) {
+                            let lastUpdateTime = "" + element.updated.hour + ":" + element.updated.minute + ":" + element.updated.second;
+                            if (button.dataset.btntype == element.type && button.dataset.btnid == element.id)
+                                switch (element.type) {
+                                    case 1:
+                                        onOffToggle(button, element.value, lastUpdateTime);
+                                        return;
+                                    case 2:
+                                        dimmingValue(button, element.dimmingValue, lastUpdateTime);
+                                        return;
+
+                                }
+                        });
+                    });
+                })
+                .fail(function () {
+                    console.log("brak odpowiedzi");
+                });
+        }
     }, 1000)
 
 });
