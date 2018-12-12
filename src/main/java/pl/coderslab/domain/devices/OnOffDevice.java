@@ -7,7 +7,6 @@ import javax.persistence.Table;
 @Table(name = "on_off_devices")
 public class OnOffDevice extends DeviceDetails {
 
-    //todo rpi + sending status
     //todo other init params
 
     private Integer pin;

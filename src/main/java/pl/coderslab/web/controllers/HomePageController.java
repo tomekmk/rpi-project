@@ -7,6 +7,8 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import pl.coderslab.domain.devices.DeviceDetails;
+import pl.coderslab.domain.location.Location;
+import pl.coderslab.services.LocationService;
 import pl.coderslab.services.ViewService;
 
 import java.util.List;
@@ -18,6 +20,8 @@ public class HomePageController {
 
     @Autowired
     ViewService viewService;
+    @Autowired
+    LocationService locationService;
 
     @GetMapping
     public String homepage(Model model) {
@@ -26,6 +30,10 @@ public class HomePageController {
         return "/mainpage/index";
     }
 
+    @ModelAttribute("locations")
+    public List<Location> locations() {
+        return locationService.getAllLocations();
+    }
 
     @ModelAttribute("menu")
     public Integer menuActive() {

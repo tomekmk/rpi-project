@@ -52,16 +52,24 @@ public class SaveDeviceService {
 //    }
 
     public void saveOnOffDevice(@Valid NewOnOffAndDimmingDeviceFormDto form) {
-        OnOffDevice device = new OnOffDevice();
+        OnOffDevice device = onOffDeviceRepoz.findFirstById(form.getId());
+        if (device == null) {
+            device = new OnOffDevice();
+            device.setStatus(1);
+            device.setType(1);
+            device.setOrderId(order++);
+            device.setUpdated(LocalDateTime.now());
+        } else {
+            setRaspberryOnePinAvailable(device.getPin());
+            pinsService.uninitOnOffPin(device.getPin());
+        }
+
         device.setName(form.getName());
         device.setDescription(form.getDescription());
-        device.setOrderId(order++);
         device.setLocation(form.getLocation());
-        device.setStatus(1);
-        device.setType(1);
-        device.setUpdated(LocalDateTime.now());
-        device.setPin(form.getPin());
         device.setValue(false);
+        device.setPin(form.getPin());
+
         onOffDeviceRepo.save(device);
         setRaspberryOnePin(device.getPin(), device.getId());
         pinsService.initNewOnOffPin(device.getPin());
@@ -89,5 +97,26 @@ public class SaveDeviceService {
         devicePin.setAvailable(false);
         devicePin.setDeviceId(deviceId);
         pinRepo.save(devicePin);
+    }
+
+    private void setRaspberryOnePinAvailable(Integer pinNumber) {
+        RaspberryPin pin = pinRepo.findFirstByPinNumber(pinNumber);
+        pin.setAvailable(true);
+        pin.setDeviceId(null);
+        pinRepo.save(pin);
+    }
+
+    public void deleteOnOffDevice(Long id) {
+        OnOffDevice device = onOffDeviceRepoz.findFirstById(id);
+        setRaspberryOnePinAvailable(device.getPin());
+        pinsService.uninitOnOffPin(device.getPin());
+        onOffDeviceRepoz.delete(device);
+    }
+
+    public void deleteDimmingDevice(Long id) {
+        DimmingDevice device = dimmingDeviceRepoz.findFirstById(id);
+        setRaspberryOnePinAvailable(device.getPin());
+        pinsService.uninitDimmingPin(device.getPin());
+        dimmingDeviceRepoz.delete(device);
     }
 }

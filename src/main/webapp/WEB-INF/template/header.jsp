@@ -60,15 +60,15 @@
             <li <c:if test="${menu == 1}">class="active"</c:if> ><a href="${pageContext.request.contextPath}/"> <i class="icon-home"></i>Urządzenia</a></li>
             <li <c:if test="${menu == 2}">class="active"</c:if> ><a href="${pageContext.request.contextPath}/location"> <i class="icon-grid"></i>Pomieszczenia</a></li>
             <li <c:if test="${menu == 3}">class="active"</c:if> ><a href="${pageContext.request.contextPath}/config"> <i class="fa fa-bar-chart"></i>Konfiguracja</a></li>
-            <li <c:if test="${menu == 4}">class="active"</c:if> ><a href="forms.html"> <i class="icon-padnote"></i>Logi</a></li>
+            <li <c:if test="${menu == 4}">class="active"</c:if> ><a href="${pageContext.request.contextPath}/"> <i class="icon-padnote"></i>Logi</a></li>
             <li><a href="#exampledropdownDropdown" aria-expanded="false" data-toggle="collapse"> <i class="icon-windows"></i>Domownicy</a>
                 <ul id="exampledropdownDropdown" class="collapse list-unstyled ">
-                    <li><a href="#">Page</a></li>
-                    <li><a href="#">Page</a></li>
-                    <li><a href="#">Page</a></li>
+                    <li><a href="${pageContext.request.contextPath}/">Page</a></li>
+                    <li><a href="${pageContext.request.contextPath}/">Page</a></li>
+                    <li><a href="${pageContext.request.contextPath}/">Page</a></li>
                 </ul>
             </li>
-            <li><a href="login.html"> <i class="icon-logout"></i>Zaloguj</a></li>
+            <li><a href="${pageContext.request.contextPath}/"> <i class="icon-logout"></i>Zaloguj</a></li>
         </ul>
     </nav>
     <!-- Sidebar Navigation end-->

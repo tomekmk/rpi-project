@@ -10,23 +10,23 @@ public abstract class DeviceDetails {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    protected Long id;
+    private Long id;
 
-    protected String name;
+    private String name;
 
     @Column(columnDefinition = "TEXT", length = 100)
-    protected String description;
+    private String description;
 
     @ManyToOne
-    protected Location location;
+    private Location location;
 
-    protected Integer status;
+    private Integer status;
 
-    protected Integer type;
+    private Integer type;
 
-    protected Integer orderId;
+    private Integer orderId;
 
-    protected LocalDateTime updated;
+    private LocalDateTime updated;
 
 
     //CONCTRUCTOR, SETTERS AND GETTERS

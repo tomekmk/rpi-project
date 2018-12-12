@@ -24,53 +24,44 @@ public class ControlService {
 
     public boolean onOffDeviceToggle(DeviceStatusDto status) {
         OnOffDevice device = onOffDeviceRepo.findFirstById(status.getDeviceId());
-        boolean value = device.isValue();
+        boolean state = device.isValue();
 
-        if (value) {
-            device.setValue(false);
-            device.setUpdated(LocalDateTime.now());
-            pinsService.setOnOffPinStatus(device.getPin(), false);
-            onOffDeviceRepo.save(device);
-        } else {
-            device.setValue(true);
-            device.setUpdated(LocalDateTime.now());
-            pinsService.setOnOffPinStatus(device.getPin(), true);
-            onOffDeviceRepo.save(device);
-        }
+        device.setValue(!state);
+        device.setUpdated(LocalDateTime.now());
+        pinsService.setOnOffPinStatus(device.getPin(), !state);
+        onOffDeviceRepo.save(device);
 
-        return !value;
+        return !state;
     }
 
     public boolean DimmingDeviceToggle(DeviceStatusDto status) {
         DimmingDevice device = dimmingDeviceRepo.findFirstById(status.getDeviceId());
-        boolean value = device.isValue();
-        if (value) {
-            device.setValue(false);
-            device.setDimmingValue(0);
-            device.setUpdated(LocalDateTime.now());
-            pinsService.setDimmingPinStatus(device.getPin(), 0);
-            dimmingDeviceRepo.save(device);
-        } else {
-            device.setValue(true);
-            device.setDimmingValue(100);
-            device.setUpdated(LocalDateTime.now());
-            pinsService.setDimmingPinStatus(device.getPin(), 100);
-            dimmingDeviceRepo.save(device);
-        }
+        boolean state = device.isValue();
+        return DimmingDeviceSetState(status, !state);
+    }
 
-        return !value;
+    public boolean DimmingDeviceSetState(DeviceStatusDto status, boolean state) {
+        DimmingDevice device = dimmingDeviceRepo.findFirstById(status.getDeviceId());
+        int value = 0;
+        if (state)
+            value = 100;
+
+        device.setValue(state);
+        device.setDimmingValue(value);
+        device.setUpdated(LocalDateTime.now());
+        pinsService.setDimmingPinStatus(device.getPin(), value);
+        dimmingDeviceRepo.save(device);
+
+        return state;
     }
 
     public Integer DimmingDeviceValue(DeviceStatusDto status) {
         DimmingDevice device = dimmingDeviceRepo.findFirstById(status.getDeviceId());
         Integer dimmValue = status.getDimmValue();
-        if (dimmValue == 0) {
-            device.setValue(false);
-            device.setDimmingValue(0);
-            device.setUpdated(LocalDateTime.now());
-            pinsService.setDimmingPinStatus(device.getPin(), 0);
-            dimmingDeviceRepo.save(device);
-        } else {
+
+        if (dimmValue == 0)
+            DimmingDeviceSetState(status, false);
+        else {
             device.setValue(true);
             device.setDimmingValue(dimmValue);
             device.setUpdated(LocalDateTime.now());

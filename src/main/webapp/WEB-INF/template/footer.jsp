@@ -11,8 +11,8 @@
 </div>
 <!-- JavaScript files-->
 <script>
-    var appUri =  "";
-    // var appUri =  "/FinalProject";
+    // var appUri =  "";
+    var appUri =  "/FinalProject";
 </script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 <%--<script src="${pageContext.request.contextPath}/files/vendor/jquery/jquery.min.js"></script>--%>

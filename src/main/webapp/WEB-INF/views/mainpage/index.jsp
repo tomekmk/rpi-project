@@ -7,44 +7,61 @@
     <div class="container-fluid">
         <div class="row">
 
-            <c:forEach items="${buttons}" var="button">
-                <c:choose>
-                    <c:when test="${button.type == 1}">
-                        <div class="col-md-3 col-sm-6 smartbutton" data-btnid="${button.id}" data-btntype="${button.type}">
-                            <div class="statistic-block block">
-                                <div class="progress-details d-flex align-items-end justify-content-between">
-                                    <div class="title">
-                                        <div class="icon"><i class="icon-user-1"><strong>${button.name}</strong></i></div>
-                                        <strong><span class="updated">${button.lastUpdated}</span></strong>
+            <c:forEach items="${locations}" var="location">
+                <div class="col-lg-6">
+                    <div class="block">
+                        <div class="title">Urządzenia w
+                            pomieszczeniu: <strong style="display: inline">${location.nameAndFloor}</strong> - ${location.type}</div>
+                    </div>
+                </div>
 
-                                    </div>
-                                    <div class="number dashtext-1"></div>
-                                </div>
-                            </div>
-                        </div>
-                    </c:when>
+                <c:forEach items="${buttons}" var="button">
+                    <c:if test="${button.location.id == location.id}">
+                        <c:choose>
+                            <c:when test="${button.type == 1}">
+                                <div class="col-md-3 col-sm-6 smartbutton" data-btnid="${button.id}"
+                                     data-btntype="${button.type}">
+                                    <div class="statistic-block block">
+                                        <div class="progress-details d-flex align-items-end justify-content-between">
+                                            <div class="title">
+                                                <div class="icon"><i class="icon-user-1"><strong>${button.name}</strong></i>
+                                                </div>
+                                                <strong><span class="updated">${button.lastUpdated}</span></strong>
 
-                    <c:when test="${button.type == 2}">
-                        <div class="col-md-3 col-sm-6 smartbutton" data-btnid="${button.id}" data-btntype="${button.type}">
-                            <div class="statistic-block block">
-                                <div class="progress-details d-flex align-items-end justify-content-between">
-                                    <div class="title">
-                                        <div class="icon"><i class="icon-user-1"><strong>${button.name}</strong></i></div>
-                                        <strong><span class="updated">${button.lastUpdated}</span></strong>
-                                    </div>
-                                    <div class="number dashtext-1"></div>
-                                </div>
-                                <div class="progress progress-template">
-                                    <div role="progressbar" style="width: 0%" aria-valuenow="0" aria-valuemin="0"
-                                         aria-valuemax="100" class="progress-bar progress-bar-template dashbg-1">
+                                            </div>
+                                            <div class="number dashtext-1"></div>
                                         </div>
-                                    <%--<div class="dragable" style="display: block; width: 10px; height: 10px; border: 1px solid black;"></div>--%>
+                                    </div>
                                 </div>
-                            </div>
-                        </div>
-                    </c:when>
+                            </c:when>
 
-                </c:choose>
+                            <c:when test="${button.type == 2}">
+                                <div class="col-md-3 col-sm-6 smartbutton" data-btnid="${button.id}"
+                                     data-btntype="${button.type}">
+                                    <div class="statistic-block block">
+                                        <div class="progress-details d-flex align-items-end justify-content-between">
+                                            <div class="title">
+                                                <div class="icon"><i class="icon-user-1"><strong>${button.name}</strong></i>
+                                                </div>
+                                                <strong><span class="updated">${button.lastUpdated}</span></strong>
+                                            </div>
+                                            <div class="number dashtext-1"></div>
+                                        </div>
+                                        <div class="progress progress-template">
+                                            <div role="progressbar" style="width: 0%" aria-valuenow="0"
+                                                 aria-valuemin="0"
+                                                 aria-valuemax="100"
+                                                 class="progress-bar progress-bar-template dashbg-1">
+                                            </div>
+                                                <%--<div class="dragable" style="display: block; width: 10px; height: 10px; border: 1px solid black;"></div>--%>
+                                        </div>
+                                    </div>
+                                </div>
+                            </c:when>
+
+                        </c:choose>
+                    </c:if>
+                </c:forEach>
             </c:forEach>
 
 

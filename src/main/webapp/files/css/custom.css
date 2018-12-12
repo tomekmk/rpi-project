@@ -46,7 +46,7 @@ nav#sidebar li li a:hover {
 
 
 .block {
-    background-color: #463f3f
+    background-color: #463f3f;
 }
 
 .statistic-block {
@@ -98,4 +98,12 @@ body {
 
 .dashbg-1 {
     /*background: #e0a800;*/
+}
+
+.block .title strong:first-child {
+    /*font-size: 1.1rem;*/
+    /*margin-bottom: 0px;*/
+    /*padding-top: 0px;*/
+    /*padding-bottom: 0px;*/
+    /*max-height: 5px;*/
 }

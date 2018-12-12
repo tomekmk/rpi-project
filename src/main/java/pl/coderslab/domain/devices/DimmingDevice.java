@@ -8,8 +8,6 @@ import javax.persistence.Table;
 @Table(name = "dimming_devices")
 public class DimmingDevice extends DeviceDetails {
 
-    //todo rpi + sending status
-
     private Integer pin;
 
     private boolean value;

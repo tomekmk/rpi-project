@@ -7,6 +7,7 @@ import javax.validation.constraints.Size;
 
 public class NewOnOffAndDimmingDeviceFormDto {
 
+    protected Long id;
 
     @NotNull(message = "Nazwa nie może być pusta.")
     @Size(min = 3, message = "Nazwa musi zawierać conajmniej 3 znaki.")
@@ -25,6 +26,14 @@ public class NewOnOffAndDimmingDeviceFormDto {
     protected Integer pin;
 
     public NewOnOffAndDimmingDeviceFormDto() {
+    }
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
     }
 
     public String getName() {

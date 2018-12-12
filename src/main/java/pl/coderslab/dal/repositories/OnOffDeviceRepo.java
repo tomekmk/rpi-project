@@ -19,8 +19,6 @@ public interface OnOffDeviceRepo extends JpaRepository<OnOffDevice, Long> {
     OnOffDevice findFirstById(Long id);
     OnOffDevice findFirstByPin(Integer pin);
 
-//    @Query(value = "SELECT max(orderId) FROM on_off_devices", nativeQuery = true)
-//    Integer findMaxId();
 }
 
 

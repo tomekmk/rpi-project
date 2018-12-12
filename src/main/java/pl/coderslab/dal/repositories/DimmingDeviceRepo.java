@@ -18,6 +18,4 @@ public interface DimmingDeviceRepo extends JpaRepository<DimmingDevice, Long> {
     DimmingDevice findFirstById(Long id);
     DimmingDevice findFirstByPin(Integer pin);
 
-//    @Query(value = "SELECT max(orderId) FROM dimming_devices", nativeQuery = true)
-//    Integer findMaxId();
 }

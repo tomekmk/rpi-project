@@ -22,7 +22,6 @@ public class InitAppConfigs {
             pinsService.createAvailablePins();
 
         pinsService.initRaspberryPins();
-//        saveDeviceService.setMaxOrderId();
     }
 
 }
